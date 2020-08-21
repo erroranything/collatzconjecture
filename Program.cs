@@ -11,35 +11,35 @@ namespace hailstone
             bool isInt = true;
             Console.WriteLine("give number");
             number = Console.ReadLine();
-            try
+            try //testing if is int
             {
-                ulong.Parse(number);
+                ulong.Parse(number); 
             }
             catch(Exception)
             {
                 Console.WriteLine("not an integer");
                 isInt = false;
             }
-            bool Notlooping = true;
-            ulong IntNumber = ulong.Parse(number);
+            bool looping = true; //starting the thing.
+            ulong IntNumber = ulong.Parse(number); //convert string to ulong (unsigned 64 bit)
             if(isInt)
             {
-                while(Notlooping)
+                while(looping)
                 {
                     Console.WriteLine(IntNumber);
-                    if (IntNumber == 1)
+                    if (IntNumber == 1) //detects if is in an endless loop
                     {
                         Console.WriteLine("infinite loop, stopping program");
                         Thread.Sleep(5000);
-                        Notlooping = false;
+                        looping = false; //stops program
                     }
                     else
                     {
-                        if (IntNumber % 2 == 0)
+                        if (IntNumber % 2 == 0) //detects if is even or odd
                         {
-                            IntNumber /= 2;
+                            IntNumber /= 2; //does calculations for even
                         }
-                        else
+                        else //does calcualations for odd
                         {
                             IntNumber *= 3;
                             IntNumber += 1;
