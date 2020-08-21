@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 
 namespace hailstone
 {
@@ -7,42 +6,44 @@ namespace hailstone
     {
         static void Main(string[] args)
         {
-            string number;
-            bool isInt = true;
             Console.WriteLine("give number");
-            number = Console.ReadLine();
-            try //testing if is int
+            string number;
+            while (true)
             {
-                ulong.Parse(number); 
-            }
-            catch(Exception)
-            {
-                Console.WriteLine("not an integer");
-                isInt = false;
-            }
-            bool looping = true; //starting the thing.
-            ulong IntNumber = ulong.Parse(number); //convert string to ulong (unsigned 64 bit)
-            if(isInt)
-            {
-                while(looping)
+                bool isInt = true;
+                number = Console.ReadLine();
+                try
                 {
-                    Console.WriteLine(IntNumber);
-                    if (IntNumber == 1) //detects if is in an endless loop
+                    ulong.Parse(number);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("not an integer");
+                    isInt = false;
+                }
+                bool looping = true;
+                ulong IntNumber = ulong.Parse(number);
+                if (isInt)
+                {
+                    while (looping)
                     {
-                        Console.WriteLine("infinite loop, stopping program");
-                        Thread.Sleep(5000);
-                        looping = false; //stops program
-                    }
-                    else
-                    {
-                        if (IntNumber % 2 == 0) //detects if is even or odd
+                        Console.WriteLine(IntNumber);
+                        if (IntNumber == 1)
                         {
-                            IntNumber /= 2; //does calculations for even
+                            Console.WriteLine("infinite loop. gimme again");
+                            looping = false;
                         }
-                        else //does calcualations for odd
+                        else
                         {
-                            IntNumber *= 3;
-                            IntNumber += 1;
+                            if (IntNumber % 2 == 0)
+                            {
+                                IntNumber /= 2;
+                            }
+                            else
+                            {
+                                IntNumber *= 3;
+                                IntNumber += 1;
+                            }
                         }
                     }
                 }
